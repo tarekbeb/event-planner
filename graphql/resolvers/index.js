@@ -2,6 +2,12 @@ const bcrypt = require('bcryptjs');
 
 const Event = require('../../models/event');
 const User = require('../../models/user');
+const Booking = require('../../models/booking');
+const booking = require('../../models/booking');
+
+// Utilities variables
+const newCreatedAt = x => new Date(x._doc.createdAt).toISOString();
+const newupdatedAt = x => new Date(x._doc.updatedAt).toISOString();
 
 const events = async eventIds => {
   try {
@@ -49,13 +55,29 @@ module.exports = {
       throw err;
     }
   },
+  bookings: async () => {
+    try {
+      const bookings = await Booking.find();
+      return bookings.map(booking => {
+        return {
+          ...booking._doc,
+          _id: booking.id,
+          createdAt: newCreatedAt(booking),
+          updatedAt: newupdatedAt(booking),
+        };
+      });
+    }
+    catch (err) {
+      throw err;
+    }
+  },
   createEvent: async args => {
     const event = new Event({
       title: args.eventInput.title,
       description: args.eventInput.description,
       price: +args.eventInput.price,
       date: new Date(args.eventInput.date),
-      creator: '5c0fbd06c816781c518e4f3e'
+      creator: '5f34d40c10e6b74b7c1e1fca'
     });
     let createdEvent;
     try {
@@ -66,7 +88,7 @@ module.exports = {
         date: new Date(event._doc.date).toISOString(),
         creator: user.bind(this, result._doc.creator)
       };
-      const creator = await User.findById('5c0fbd06c816781c518e4f3e');
+      const creator = await User.findById('5f34d40c10e6b74b7c1e1fca');
 
       if (!creator) {
         throw new Error('User not found.');
@@ -97,6 +119,26 @@ module.exports = {
 
       return { ...result._doc, password: null, _id: result.id };
     } catch (err) {
+      throw err;
+    }
+  },
+  bookEvent: async args => {
+    try {
+      const fetchedEvent = await Event.findById({_id: args.eventId})
+      const booking = new Booking({
+        user: '5f34d40c10e6b74b7c1e1fca',
+        event: fetchedEvent
+      });
+      const result = await booking.save();
+      return {
+        ...result._doc,
+        _id: result.id,
+        createdAt: newCreatedAt(result),
+        updatedAt: newupdatedAt(result)
+
+      }
+    }
+    catch (err) {
       throw err;
     }
   }
