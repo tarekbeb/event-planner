@@ -43,6 +43,7 @@ class App extends Component {
               {!token && <Redirect from="/bookings" to="/login" exact />}
               <Redirect from="/logout" to="/login" exact />
               <Route path="/login" component={AuthPage} />
+              <Route path="/signup" component={AuthPage} />
               <Route path="/events" component={Events} />
               <Route path="/bookings" component={Bookings} />
             </Switch>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import TextField from '@material-ui/core/TextField';
@@ -99,7 +100,6 @@ class AuthPage extends Component {
       console.log(err);
     })
   }
-
   render() {
     const { emailError, passError, isLogin } = this.state;
     return (

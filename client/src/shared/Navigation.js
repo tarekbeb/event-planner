@@ -33,6 +33,11 @@ const Navigation = (props) => (
                   <NavLink to="/login">Login</NavLink>
                 </li>
               }
+              {!context.token &&
+                <li>
+                  <NavLink to="/signup">Signup</NavLink>
+                </li>
+              }
             </ul>
           </nav>
         </header>
