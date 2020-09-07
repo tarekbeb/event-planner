@@ -6,8 +6,11 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 // import { createUser, loginQuery } from '../graphql/auth';
 import '../styles/Auth.css'
+import AuthContext from '../context/auth-context';
 
 class AuthPage extends Component {
+  static contextType = AuthContext;
+
   constructor(props) {
     super(props);
     this.state= {
@@ -88,7 +91,9 @@ class AuthPage extends Component {
       return res.json();
     })
     .then(resData => {
-      console.log(resData)
+      if (resData.data.login.token) {
+        this.context.login(resData.data.login.token, resData.data.login.userId, resData.data.login.tokenExpiration)
+      }
     })
     .catch(err => {
       console.log(err);
