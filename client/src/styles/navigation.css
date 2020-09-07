@@ -4,7 +4,42 @@
     top: 0;
     width: 100%;
     height: 3.5rem;
-    background: #01d1d1;
+    background: #212121;
     padding: 0 1rem;
     display: flex;
+    align-items: center;
+}
+
+.main-navigation_logo h1 {
+    color: #F2994A;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.main-navigation_items {
+  margin-left: 1.5rem;
+}
+
+.main-navigation_items ul {
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.main-navigation_items li {
+  margin: 0 1rem;
+}
+
+.main-navigation_items a {
+  text-decoration: none;
+  height: 3.5rem;
+  color: #ffffff;
+}
+
+.main-navigation_items a:hover,
+.main-navigation_items a:active,
+.main-navigation_items a.active {
+  border-bottom: 2px solid #F2994A;
 }

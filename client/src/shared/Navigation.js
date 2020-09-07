@@ -1,38 +1,28 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import { NavLink } from 'react-router-dom';
+import { NavLink, } from 'react-router-dom';
+import '../styles/navigation.css';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
 
 const Navigation = () => {
-  const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Tabs
-          variant="fullWidth"
-          onChange={handleChange}
-          aria-label="nav tabs example"
-        >
-          <NavLink to="/bookings">Bookings</NavLink>
-          <NavLink to="/events">Events</NavLink>
-          <NavLink to="/authenticate">Authenticate</NavLink>
-        </Tabs>
-      </AppBar>
-    </div>
+    <header className="main-navigation">
+      <div className="main-navigation_logo">
+        <h1>Event Planner</h1>
+      </div>
+      <nav className="main-navigation_items">
+        <ul>
+          <li>
+            <NavLink to="/bookings">Bookings</NavLink>
+          </li>
+          <li>
+            <NavLink to="/events">Events</NavLink>
+          </li>
+          <li>
+            <NavLink to="/auth">Authenticate</NavLink>
+            </li>
+        </ul>
+      </nav>
+    </header>
   );
 }
 
