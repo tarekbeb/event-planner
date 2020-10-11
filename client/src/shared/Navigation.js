@@ -8,6 +8,7 @@ import '../styles/navigation.css';
 const Navigation = (props) => (
   <AuthContext.Consumer>
     {(context) => {
+      const isLoggedIn = context.token;
       return (
         <header className="main-navigation">
           <div className="main-navigation_logo">
@@ -18,7 +19,7 @@ const Navigation = (props) => (
               <li>
                 <NavLink to="/events">Events</NavLink>
               </li>
-              {context.token &&
+              {isLoggedIn &&
               <>
                 <li>
                   <NavLink to="/bookings">Bookings</NavLink>
@@ -28,15 +29,15 @@ const Navigation = (props) => (
                 </li>
               </>
               }
-              {!context.token &&
-                <li>
-                  <NavLink to="/login">Login</NavLink>
-                </li>
-              }
-              {!context.token &&
-                <li>
-                  <NavLink to="/signup">Signup</NavLink>
-                </li>
+              {!isLoggedIn &&
+                <>
+                  <li>
+                    <NavLink to="/login">Login</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/signup">Signup</NavLink>
+                  </li>
+                </>
               }
             </ul>
           </nav>

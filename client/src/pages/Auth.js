@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 
+// Material UI components imports
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-// import { createUser, loginQuery } from '../graphql/auth';
+
+// Styles import
 import '../styles/Auth.css'
+import '../styles/index.css'
+
+// Context
 import AuthContext from '../context/auth-context';
 
 class AuthPage extends Component {
@@ -18,29 +23,47 @@ class AuthPage extends Component {
       email: '',
       password: '',
       emailError: false,
-      passError: false,
+      passwordError: false,
       isLogin: true
     }
   }
 
   handleLoginToSignup = () => {
+    /**
+      * This method switches API call based on state
+      * @function handleLoginToSignup
+      * @param empty
+      * @returns {setState} - negates isLogin
+   */
     this.setState(preState => {
       return { isLogin: !preState.isLogin}
     })
   }
 
-  formOnChange = (e, inputField) => {
+  onFormChange = (e, inputField) => {
+    /**
+      onFormChange
+        @param {Object} e - event
+        @param inputField - input field type
+    */
     const value = e.target.value;
-    if (inputField === 'email') {
-      this.setState({ email: value})
-    } else {
-    this.setState({ password: value})
+    switch (inputField){
+      case 'email': this.setState({ email: value});
+        break;
+      case 'password': this.setState({ password: value })
+        break;
+      default: return null;
     }
   }
 
   submitHandler = (e) => {
+    /**
+      submitHandler
+        @param e: event
+    */
     e.preventDefault();
     let requestBody = {};
+    const isLogin = this.state.isLogin;
     const email = this.state.email;
     const password = this.state.password;
     if (email.trim().length === 0) {
@@ -48,34 +71,43 @@ class AuthPage extends Component {
       return;
     }
     if (password.trim().length === 0) {
-      this.setState({ passError: true });
+      this.setState({ passwordError: true });
       return;
     }
-    if (this.state.isLogin) {
-      requestBody = {
-        query: `
-          query
-            {
-              login(email: "${email}", password: "${password}") {
-                userId
-                token
-                tokenExpiration
+    switch (isLogin) {
+      case isLogin: (
+        requestBody = {
+          query: `
+            query
+              {
+                login(email: "${email}", password: "${password}") {
+                  userId
+                  token
+                  tokenExpiration
+                }
               }
-            }
-        `
-      }
-    } else {
-      requestBody = {
-        query: `
-          mutation
-            {
-              createUser(userInput: {email: "${email}", password: "${password}"}) {
-                _id
-                email
+          `
+        }
+      );
+        break;
+      case !isLogin: (
+        requestBody = {
+          query: `
+            mutation
+              {
+                createUser(userInput: {
+                  email: "${email}",
+                  password: "${password}"
+                }) {
+                  _id
+                  email
+                }
               }
-            }
-        `
-      };
+          `
+        }
+      );
+        break;
+      default: return null;
     }
     
     fetch('http://localhost:8000/graphql', {
@@ -101,7 +133,7 @@ class AuthPage extends Component {
     })
   }
   render() {
-    const { emailError, passError, isLogin } = this.state;
+    const { emailError, passwordError, isLogin } = this.state;
     return (
       <form className="auth-form-container" onSubmit={(e) => this.submitHandler(e)}>
         <Card variant="outlined" className="auth-form-card">
@@ -114,7 +146,7 @@ class AuthPage extends Component {
             </Typography>
             <div className="form-control">
               <TextField
-                onChange={(e) => this.formOnChange(e, 'email')}
+                onChange={(e) => this.onFormChange(e, 'email')}
                 ref={this.emailEl}
                 id="standard-required"
                 className="text-field"
@@ -124,14 +156,14 @@ class AuthPage extends Component {
                 fullWidth
               />
               <TextField
-                onChange={(e) => this.formOnChange(e, 'password')}
+                onChange={(e) => this.onFormChange(e, 'password')}
                 ref={this.passwordEl}
                 id="standard-password-input"
                 label="Password"
                 type="password"
                 autoComplete="current-password"
-                error={passError}
-                helperText={passError ? 'required' : ''}
+                error={passwordError}
+                helperText={passwordError ? 'required' : ''}
                 fullWidth
               />
             </div>
