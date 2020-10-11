@@ -5,4 +5,36 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #F9F9FA;;
+}
+
+.auth-form-container {
+  width: 35rem;
+  height: 35rem;
+  max-width: 80%;
+  margin: 5rem auto;
+}
+
+/* .auth-form-container {
+  width: 35rem;
+  height: 35rem;
+  max-width: 80%;
+  margin: 5rem auto;
+} */
+
+.auth-form-card {
+  height: 100%;
+  padding: 2rem;
+  border: 1px solid #E6E6E8;
+  height: 55%;
+  margin-top: 25rem;
+}
+
+.form-control {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.text-field {
+  margin-bottom: 1rem !important;
 }

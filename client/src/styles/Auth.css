@@ -7,8 +7,10 @@
 
 .auth-form-card {
     height: 100%;
-    padding: 1rem;
+    padding: 2rem;
     border: 1px solid #E6E6E8;
+    height: 85%;
+    margin-top: 25rem;
 }
 
 .form-control {
