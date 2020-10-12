@@ -25,7 +25,7 @@ const Navigation = (props) => (
                   <NavLink to="/bookings">Bookings</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/logout" onClick={() => context.logout()}>Logout</NavLink>
+                  <NavLink to="/logout" onClick={context.logout}>Logout</NavLink>
                 </li>
               </>
               }

@@ -34,18 +34,17 @@ class App extends Component {
             logout: this.logout
           }}
         >
-          <Navigation />
           <main className="main-content">
+            <Navigation />
             <Switch>
-              {!token && <Redirect from="/" to="/login" exact />}
               {token && <Redirect from="/" to="/events" exact />}
               {token && <Redirect from="/login" to="/events" exact />}
-              {!token && <Redirect from="/bookings" to="/login" exact />}
+              {!token && <Route path="/login" component={AuthPage} />}
               <Redirect from="/logout" to="/login" exact />
-              <Route path="/login" component={AuthPage} />
               <Route path="/signup" component={AuthPage} />
               <Route path="/events" component={Events} />
               <Route path="/bookings" component={Bookings} />
+              {!token && <Redirect to="/login" exact />}
             </Switch>
           </main>
         </AuthContext.Provider>

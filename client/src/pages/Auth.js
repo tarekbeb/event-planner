@@ -42,9 +42,9 @@ class AuthPage extends Component {
 
   onFormChange = (e, inputField) => {
     /**
-      onFormChange
-        @param {Object} e - event
-        @param inputField - input field type
+      * @function onFormChange
+      * @param {Object} e - event
+      * @param inputField - input field type
     */
     const value = e.target.value;
     switch (inputField){
@@ -58,8 +58,8 @@ class AuthPage extends Component {
 
   submitHandler = (e) => {
     /**
-      submitHandler
-        @param e: event
+      * @function submitHandler
+      * @param e - event
     */
     e.preventDefault();
     let requestBody = {};
@@ -109,7 +109,6 @@ class AuthPage extends Component {
         break;
       default: return null;
     }
-    
     fetch('http://localhost:8000/graphql', {
       method: 'POST',
       body: JSON.stringify(requestBody),
@@ -125,6 +124,7 @@ class AuthPage extends Component {
     })
     .then(resData => {
       if (resData.data.login.token) {
+        localStorage.setItem('token', resData.data.login.token);
         this.context.login(resData.data.login.token, resData.data.login.userId, resData.data.login.tokenExpiration)
       }
     })

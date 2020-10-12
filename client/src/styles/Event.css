@@ -1,0 +1,40 @@
+::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+    color: transparent;
+}
+
+body {
+    margin: 4rem 25rem 2rem 25rem;
+}
+
+.event-button {
+    float: right;
+}
+
+.card-header {
+    color: #212121;
+    padding-bottom: 1rem;
+
+}
+
+.events-list {
+    margin-top: 3rem !important;
+}
+
+.create-event-card {
+    padding: 2rem;
+    border: 1px solid #E6E6E8;
+    height: auto;
+    margin-top: 3rem;
+}
+
+.MuiGrid-container {
+    margin-top: 2rem !important;
+}
+
+.event-card {
+    width: 275px;
+    height: 314px;
+
+}

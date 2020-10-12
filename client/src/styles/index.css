@@ -5,36 +5,40 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #F9F9FA;;
+  background-color: #F9F9FA;
 }
 
-.auth-form-container {
-  width: 35rem;
-  height: 35rem;
-  max-width: 80%;
-  margin: 5rem auto;
+.contained-button {
+  background-color: #F2994A !important;
+  border-radius: 0px !important;
+  margin-top: 2rem !important;
 }
 
-/* .auth-form-container {
-  width: 35rem;
-  height: 35rem;
-  max-width: 80%;
-  margin: 5rem auto;
-} */
-
-.auth-form-card {
-  height: 100%;
-  padding: 2rem;
-  border: 1px solid #E6E6E8;
-  height: 55%;
-  margin-top: 25rem;
+.contained-button:hover {
+  background-color: #f57c00 !important;
 }
 
-.form-control {
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+.text-button {
+  color: #F2994A !important;
+  border-radius: 0px !important;
 }
 
-.text-field {
-  margin-bottom: 1rem !important;
+.text-button:hover {
+  background-color: transparent !important;
+  color: #f57c00 !important;
+}
+
+.text-button Button:hover,
+.text-button Button:active {
+  color: #f57c00;
+}
+
+.main-header {
+    color: #212121;
+}
+
+.paragraph {
+  margin-top: 2rem;
+  font-size: 13px !important;
+  line-height: 20 !important;
 }
