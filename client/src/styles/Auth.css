@@ -1,0 +1,38 @@
+.auth-form-container {
+    width: 35rem;
+    height: 35rem;
+    max-width: 80%;
+    margin: 5rem auto;
+}
+
+.auth-form-card {
+    padding: 2rem;
+    border: 1px solid #E6E6E8;
+    height: 55%;
+    margin-top: 25rem;
+}
+
+.form-control {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.text-field {
+    margin-bottom: 1rem !important;
+}
+
+.text-field.active {
+    color: #F2994A !important;
+}
+
+.form-actions {
+    margin-top: 0.5rem;
+}
+
+.form-actions Button {
+    width: 10rem;
+    border-radius: 0px !important;
+    margin-left: 0;
+    margin-right: 1rem;
+    margin-top: 1rem;
+}
